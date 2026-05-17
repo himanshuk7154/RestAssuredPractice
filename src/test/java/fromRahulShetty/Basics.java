@@ -22,7 +22,7 @@ public class Basics {
                 .header("Content-Type", "application/json")
                 .body(Payload.addPlaceBody())
                 .when().post("maps/api/place/add/json")
-                .then().assertThat().statusCode(200)
+                .then().log().all().assertThat().statusCode(200)
                 .body("scope", equalTo("APP"))
                 .header("server", "Apache/2.4.52 (Ubuntu)").extract().response().asString();
 
@@ -58,13 +58,12 @@ public class Basics {
         ReusableFuncs reusable = new ReusableFuncs();
         js = reusable.getJSONPathObjectFromStringResponse(getPlaceResponse);
         String actualAddress = js.getString("address");
-        js = reusable.getJSONPathObjectFromStringResponse(Payload.addPlaceBody());
-        String expectedAddress = js.getString("address");
+
         if(actualAddress.equals(updatedAddress)){
             System.out.println("Address correctly saved");
         }
         else {
-            System.out.println(String.format("Actual address {} and expected address {} don't match",actualAddress,expectedAddress));
+            System.out.println(String.format("Actual address {} and expected address {} don't match",actualAddress,updatedAddress));
         }
     }
 }
