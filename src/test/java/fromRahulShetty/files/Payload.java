@@ -20,4 +20,16 @@ public class Payload {
                 "  \"language\": \"French-IN\"\r\n" +
                 "}\r\n";
     }
+
+    public static String addBook(int aisle, String isbn){
+
+        return "{\n" +
+                "\n" +
+                "\"name\":\"Learn Appium Automation with Java\",\n" +
+                "\"isbn\":\""+isbn+"\",\n" +
+                "\"aisle\":\""+aisle+"\",\n" +
+                "\"author\":\"Himanshu Kumar\"\n" +
+                "}\n" +
+                " \n";
+    }
 }
